@@ -520,77 +520,26 @@ function update () {
 
 }
 
-var exampleNodes = [
-  {"type":"Onboarding", "id":100, "parent":null, "name":"Onboarding"},
-  {"type":"Onboarding", "id":101, "parent":100, "name":"Registration"},
-  {"type":"Onboarding", "id":102, "parent":100, "name":"Welcome"},
+// load JSON data
+d3.json("data.json", function(jsonerror, jsondata) {
+  if (jsonerror) {
+    throw "JSON ERROR: " + jsonerror;
+  } else if (!jsondata.nodes) {
+    throw "JSON ERROR: no nodes";
+  } else if (!jsondata.links) {
+    throw "JSON ERROR: no links";
+  } else {
+    console.log(jsondata.nodes.length + " nodes and " + jsondata.links.length + " links");
 
-  {"type":"Assessments", "id":200, "parent":null, "name":"Assessments"},
-  {"type":"Assessments", "id":201, "parent":200, "name":"Diagnostic Assessment"},
-  {"type":"Assessments", "id":202, "parent":200, "name":"Readiness Assessment"},
-  {"type":"Assessments", "id":203, "parent":200, "name":"Credentialed Assessment"},
+    biHiSankey
+      .nodes(jsondata.nodes)
+      .links(jsondata.links)
+      .initializeNodes(function (node) {
+        node.state = node.parent ? "contained" : "collapsed";
+      })
+      .layout(LAYOUT_INTERATIONS);
 
-  {"type":"Learning", "id":300, "parent":null, "name":"Learning"},
-  {"type":"Learning", "id":301, "parent":300, "name":"Pre-Work"},
-  {"type":"Learning", "id":302, "parent":300, "name":"Learning Path(s)"},
-
-  {"type":"Support", "id":400, "parent":null, "name":"Support"},
-  {"type":"Support", "id":401, "parent":400, "name":"via Email"},
-  {"type":"Support", "id":402, "parent":400, "name":"via Intercom"},
-
-  {"type":"Offboarding", "id":500, "parent":null, "name":"Offboarding"},
-
-  // {"type":"Asset", "id":7, "parent":null, "name":"Administration"},
-]
-
-var exampleLinks = [
-  {"source":101, "target":102, "value":100},
-  {"source":101, "target":401, "value":20},
-  {"source":101, "target":402, "value":20},
-
-  {"source":102, "target":201, "value":50},
-  {"source":102, "target":203, "value":25},
-  {"source":102, "target":301, "value":50},
-  {"source":102, "target":302, "value":50},
-  {"source":102, "target":203, "value":100},
-
-  {"source":201, "target":202, "value":75},
-  {"source":201, "target":301, "value":100},
-  {"source":201, "target":401, "value":10},
-  {"source":201, "target":402, "value":10},
-
-  {"source":301, "target":202, "value":50},
-  {"source":301, "target":302, "value":100},
-  {"source":301, "target":401, "value":10},
-  {"source":301, "target":402, "value":10},
-
-  {"source":302, "target":203, "value":25},
-  {"source":302, "target":302, "value":100},
-  {"source":302, "target":401, "value":10},
-  {"source":302, "target":402, "value":10},
-
-
-]
-
-biHiSankey
-  .nodes(exampleNodes)
-  .links(exampleLinks)
-  .initializeNodes(function (node) {
-    node.state = node.parent ? "contained" : "collapsed";
-  })
-  .layout(LAYOUT_INTERATIONS);
-
-disableUserInterractions(2 * TRANSITION_DURATION);
-
-update();
-
-// $(function(){
-//
-//   var $nodes = $('g.node')
-//   $.each($nodes, function(index, value) {
-//     console.log(value)
-//     $(value).find('rect').click(function(e) {
-//       console.log(e.target)
-//     })
-//   })
-// })
+    disableUserInterractions(2 * TRANSITION_DURATION);
+    update();
+  }
+});

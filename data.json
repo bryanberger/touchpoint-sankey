@@ -1,0 +1,48 @@
+{
+  "nodes": [
+    {"type":"Onboarding", "id":100, "parent":null, "name":"Onboarding"},
+    {"type":"Onboarding", "id":101, "parent":100, "name":"Registration"},
+    {"type":"Onboarding", "id":102, "parent":100, "name":"Welcome"},
+
+    {"type":"Assessments", "id":200, "parent":null, "name":"Assessments"},
+    {"type":"Assessments", "id":201, "parent":200, "name":"Diagnostic Assessment"},
+    {"type":"Assessments", "id":202, "parent":200, "name":"Readiness Assessment"},
+    {"type":"Assessments", "id":203, "parent":200, "name":"Credentialed Assessment"},
+
+    {"type":"Learning", "id":300, "parent":null, "name":"Learning"},
+    {"type":"Learning", "id":301, "parent":300, "name":"Pre-Work"},
+    {"type":"Learning", "id":302, "parent":300, "name":"Learning Path(s)"},
+
+    {"type":"Support", "id":400, "parent":null, "name":"Support"},
+    {"type":"Support", "id":401, "parent":400, "name":"via Email"},
+    {"type":"Support", "id":402, "parent":400, "name":"via Intercom"},
+
+    {"type":"Offboarding", "id":500, "parent":null, "name":"Offboarding"}
+  ],
+  "links": [
+    {"source":101, "target":102, "value":100},
+    {"source":101, "target":401, "value":20},
+    {"source":101, "target":402, "value":20},
+
+    {"source":102, "target":201, "value":50},
+    {"source":102, "target":203, "value":25},
+    {"source":102, "target":301, "value":50},
+    {"source":102, "target":302, "value":50},
+    {"source":102, "target":203, "value":100},
+
+    {"source":201, "target":202, "value":75},
+    {"source":201, "target":301, "value":100},
+    {"source":201, "target":401, "value":10},
+    {"source":201, "target":402, "value":10},
+
+    {"source":301, "target":202, "value":50},
+    {"source":301, "target":302, "value":100},
+    {"source":301, "target":401, "value":10},
+    {"source":301, "target":402, "value":10},
+
+    {"source":302, "target":203, "value":25},
+    {"source":302, "target":302, "value":100},
+    {"source":302, "target":401, "value":10},
+    {"source":302, "target":402, "value":10}
+  ]
+}
