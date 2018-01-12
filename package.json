@@ -1,13 +1,13 @@
 {
   "name": "touchpoint-sankey",
   "version": "1.0.0",
-  "description": "",
+  "description": "A non-linear cyclical flow visualization showing the relationship of where certain personas spend most of their time on myGA. ",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server ."
+    "start": "http-server ./src"
   },
-  "author": "",
+  "author": "Bryan Berger",
   "license": "ISC",
   "devDependencies": {
     "http-server": "^0.10.0"

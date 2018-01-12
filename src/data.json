@@ -16,8 +16,18 @@
     {"type":"Support", "id":400, "parent":null, "name":"Support"},
     {"type":"Support", "id":401, "parent":400, "name":"via Email"},
     {"type":"Support", "id":402, "parent":400, "name":"via Intercom"},
+    {"type":"Support", "id":403, "parent":400, "name":"via Internal Feedback"},
 
-    {"type":"Offboarding", "id":500, "parent":null, "name":"Offboarding"}
+    {"type":"Offboarding", "id":500, "parent":null, "name":"Offboarding"},
+
+    {"type":"Admin", "id":600, "parent":null, "name":"Admin"},
+    {"type":"Admin", "id":601, "parent":600, "name":"Create"},
+    {"type":"Admin", "id":602, "parent":600, "name":"Whitelists"},
+    {"type":"Admin", "id":603, "parent":600, "name":"Reports"},
+    {"type":"Admin", "id":604, "parent":600, "name":"Partners"},
+
+    {"type":"Profile", "id":700, "parent":null, "name":"Profile"},
+    {"type":"Profile", "id":701, "parent":700, "name":"Edit Profile"}
   ],
   "links": [
     {"source":101, "target":102, "value":100},
@@ -43,6 +53,13 @@
     {"source":302, "target":203, "value":25},
     {"source":302, "target":302, "value":100},
     {"source":302, "target":401, "value":10},
-    {"source":302, "target":402, "value":10}
+    {"source":302, "target":402, "value":10},
+
+    {"source":600, "target":403, "value":50},
+
+    {"source":700, "target":601, "value":25},
+    {"source":700, "target":602, "value":25},
+    {"source":700, "target":603, "value":25},
+    {"source":700, "target":604, "value":25}
   ]
 }
